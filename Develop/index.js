@@ -1,17 +1,35 @@
 const inquirer = require('inquirer');
+const fs = require('fs');
+const util = require('util');
+const api = require('./utils/api.js');
+const generateMarkdown = require('./utils/generateMarkdown.js');
 
 // array of questions for user
 const questions = [
     {
         type: 'input',
         message: "What is your GitHub username? (No @ needed)",
-        name: 'username'
-      },
+        name: 'username',
+        default: 'awarmath',
+        validate: function (answer) {
+            if (answer.length < 1) {
+                return console.log("Please enter a valid GitHub username");
+            }
+            return true;
+        }
+    },
       {
         type: 'input',
         message: "What is the title of your project?",
-        name: 'title'
-      },
+        name: 'title',
+        default: 'Title',
+        validate: function (answer) {
+            if (answer.length < 1) {
+                return console.log("Please enter a valid project title");
+            }
+            return true;
+        }
+    },
       {
         type: 'input',
         message: "Write a description of your project.",
@@ -44,21 +62,35 @@ const questions = [
         name: 'tests'
       },
 ];
-];
 
 // function to write README file
 function writeToFile(fileName, data) {
+    fs.writeFile(fileName, data, err => {
+        if (err) {
+          return console.log(err);
+        }
+
+        console.log("Success! Your README.md file has been generated")
+    });
 }
+
+const writeFileAsync = util.promisify(writeToFile);
+
 
 // function to initialize program
 async function init() {
-    await inquirer
-        .prompt(questions)
-        .then(response => {
-            console.log(response);
-            console.log("Fetching GitHub data")
-        });
-    await console.log('next');
+    const userResponses = await inquirer.prompt(questions);
+    console.log("Your responses: ", userResponses);
+    console.log("Thank you for your responses! Fetching your GitHub data.");
+    const userInfo = await api.apiCalls.getUser(userResponses);
+
+    const userInfo = await api.getUser(userResponses);
+    console.log("userInfo: ", userInfo);
+
+    const markdown = await generateMarkdown(userResponses, userInfo);
+    console.log(markdown);
+
+    await writeFileAsync('ExampleREADME.md', markdown);
 }
 
 // function call to initialize program
