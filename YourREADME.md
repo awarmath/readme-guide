@@ -1,12 +1,12 @@
-# Title
-  ![Badge for GitHub repo top language](https://img.shields.io/github/languages/top/awarmath/readme-generator?style=flat&logo=appveyor) ![Badge for GitHub last commit](https://img.shields.io/github/last-commit/awarmath/readme-generator?style=flat&logo=appveyor)
+# readme-guide
+  ![Badge for GitHub repo top language](https://img.shields.io/github/languages/top/awarmath/readme-guide?style=flat&logo=appveyor) ![Badge for GitHub last commit](https://img.shields.io/github/last-commit/awarmath/readme-guide?style=flat&logo=appveyor)
   
   Check out the badges hosted by [shields.io](https://shields.io/).
   
   
   ## Description 
     
-  Description
+  Insert description here
   ## Table of Contents
   * [Installation](#installation)
   * [Usage](#usage)
@@ -17,15 +17,15 @@
   
   ## Installation
     
-  Steps
+  Insert steps here
   
   ## Usage 
     
-  Instructions
+  Insert instructions here
     
   ## Credit
         
-  None
+  none today
   
   ## License
   
@@ -33,11 +33,11 @@
     
   ## Contributing
         
-  Guidelines
+  Insert guidelines to contribute here
       
   ## Tests
             
-  Tests
+  Insert tests here
   ---
   
   ## Questions?
